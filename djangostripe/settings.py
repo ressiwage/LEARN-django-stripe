@@ -27,8 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#да, знаю, о чём вы думаете, секретные ключи -- в публичном репозитории. разумеется, это всего-лишь тестовое задание, на проде я бы положил все секреты в переменные окружения.
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51OVIQkAllOcADDHmEVsuG6My5CELtum2vo7InA13H0dNzvgKeCmug14fK88LHBLcaSoLd9z8B4HGSC1dca4k6LsR00NcrJmSnn'
 STRIPE_SECRET_KEY = 'sk_test_51OVIQkAllOcADDHmyJ0zrYzKOZz3TQahBNbBnub3ExcuUvPJBwHO60Fkdhr1tVh7IaWNOtDrNxPSvBOdyqFhKWQQ00Wg3LY8S8'
+STRIPE_ENDPOINT_SECRET = 'whsec_0c4a256ccb4774552c8d50c877da82fb8d41126820da638893cff9bc1321e59d'
 
 # Application definition
 
@@ -122,6 +124,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # new
+
+
 
 
 # Default primary key field type
