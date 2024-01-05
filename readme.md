@@ -25,3 +25,4 @@
 ### запуск
 1. установить requirements.txt
 2. python manage.py runserver
+креды от админки: admin:admin
