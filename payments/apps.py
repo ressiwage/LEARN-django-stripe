@@ -1,4 +1,6 @@
 from django.apps import AppConfig
+from django.conf import settings # new
+import stripe
 
 
 class PaymentsConfig(AppConfig):

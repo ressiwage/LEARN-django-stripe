@@ -4,18 +4,22 @@ from django.http.response import JsonResponse # new
 from django.views.decorators.csrf import csrf_exempt # new
 from django.shortcuts import render
 import stripe
+from . import models
 from django.http.response import JsonResponse, HttpResponse
 
 
-class HomePageView(TemplateView):
-    template_name = 'home.html'
+def home(request):
+    return render(request, 'home.html', {'items':models.Item.objects.all()})
 
+def item(request, i_id):
+    item_ = models.Item.objects.all()[i_id]
+    return render(request, 'item.html', {'item':item_, 'i_id':i_id})
 
 def success(request):
     template_name = 'success.html'
     session = stripe.checkout.Session.retrieve(request.GET['session_id'])
     # customer = stripe.Customer.retrieve(session.customer)
-    print(session.__dict__)
+    
     return render(request, template_name)
 
 class CancelledView(TemplateView):
@@ -29,10 +33,12 @@ def stripe_config(request):
         return JsonResponse(stripe_config, safe=False)
     
 @csrf_exempt
-def create_checkout_session(request):
+def create_checkout_session(request, p_id):
     if request.method == 'GET':
         domain_url = 'http://localhost:8000/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        
+        prices = [i for i in stripe.Price.list()['data']]
         try:
             checkout_session = stripe.checkout.Session.create(
                 success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
@@ -41,7 +47,7 @@ def create_checkout_session(request):
                 mode='payment',
                 line_items=[
                     {
-                        'price': 'price_1OVIVMAllOcADDHmPYE9tFJy',
+                        'price': prices[p_id]['id'],
                         'quantity':1,
                     }
                 ]

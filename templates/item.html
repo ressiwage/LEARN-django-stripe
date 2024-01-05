@@ -14,11 +14,10 @@
   <body>
   <section class="section">
     <div class="container">
-      <ul>
-      {% for i in items %}
-        <li><a href="/item/{{forloop.counter0}}">{{i.name}}</a>    </li>
-      {% endfor %}
-    </ul>
+        <h1>товар: {{item.name}}</h1>
+        <h3>описание: {{item.description}}</h3>
+        <h4>цена: {{item.price}} {{item.currency}}</h4>
+      <button class="button is-primary" id="submitBtn" onclick="buy({{ i_id }})">Оплатить</button>
     </div>
   </section>
   </body>
