@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51OVIQkAllOcADDHmEVsuG6My5CELtum2vo7InA13H0dNzvgKeCmug14fK88LHBLcaSoLd9z8B4HGSC1dca4k6LsR00NcrJmSnn'
+STRIPE_SECRET_KEY = 'sk_test_51OVIQkAllOcADDHmyJ0zrYzKOZz3TQahBNbBnub3ExcuUvPJBwHO60Fkdhr1tVh7IaWNOtDrNxPSvBOdyqFhKWQQ00Wg3LY8S8'
 
 # Application definition
 
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'djangostripe.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # new
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
