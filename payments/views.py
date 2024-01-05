@@ -2,6 +2,7 @@ from django.views.generic.base import TemplateView
 from django.conf import settings # new
 from django.http.response import JsonResponse # new
 from django.views.decorators.csrf import csrf_exempt # new
+from django.shortcuts import render
 import stripe
 from django.http.response import JsonResponse, HttpResponse
 
@@ -10,8 +11,12 @@ class HomePageView(TemplateView):
     template_name = 'home.html'
 
 
-class SuccessView(TemplateView):
+def success(request):
     template_name = 'success.html'
+    session = stripe.checkout.Session.retrieve(request.GET['session_id'])
+    # customer = stripe.Customer.retrieve(session.customer)
+    print(session.__dict__)
+    return render(request, template_name)
 
 class CancelledView(TemplateView):
     template_name = 'cancelled.html'
